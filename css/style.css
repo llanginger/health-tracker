@@ -1,0 +1,32 @@
+/** {
+  border: 1px dashed red;
+}*/
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 60px;
+  /*margin: 20px;*/
+  background: honeydew;
+  padding: 0px;
+}
+
+#search-div {
+  height: 500px;
+  background: #ccddff;
+}
+
+#search-bar {
+  background: #ffccdd;
+  height: 30px;
+  width: 600px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+}
