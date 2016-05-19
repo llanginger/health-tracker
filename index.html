@@ -24,14 +24,16 @@
   </header>
   <body id="health-app">
 
-    <script type="text/template" id="main-template">
+    <script type="text/template" id="search-template">
 
-      <span id="food-info"></span>
+      <option value="" />
 
     </script>
 
     <div id="search-div">
-      <input id="search-bar" class="edit" type="text" value="What did you just eat?" />
+      <input id="search-bar" class="edit" type="text" value="What did you just eat?" list="food-list" />
+      <datalist id="food-list">
+      </datalist>
       <button id="search-button">Search Now</button>
 
     </div>
