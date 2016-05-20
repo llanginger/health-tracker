@@ -2,7 +2,7 @@ var app = app || {};
 
 var nSets = {
   searchUrl: "https://api.nutritionix.com/v1_1/search/",
-  autoUrl: "https://api.nutritionix.com/v2/autocomplete?q=",
+  autoUrl: "https://api.nutritionix.com/v2/autocomplete?",
   phrase: "Tacos",
   appId: "appId=02cd80d0",
   appKey: "appKey=421b1fb27190316a6585e273b648dd6f",
@@ -11,16 +11,67 @@ var nSets = {
   fields: "fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat"
 }
 
+
+
 // TODO Autocomplete as people are typing. Once they click, send the autocompleted-text to the nutri search function to retrieve the final options. Use a <datalist> tag in template and populate with results from the autocomplete function.
+
+// TODO: Learn the jquery autocomplete tutorial here: https://designshack.net/articles/javascript/create-a-simple-autocomplete-with-html5-jquery/
+
 $(function(){
   $("body").click(function( event ) {
     console.log(event.target);
+  });
+
+  var value;
+
+  $('#autocomplete').on('change', function() {
+    value = $(this).val();
+    // alert(value);
+  });
+
+  var currencies = [
+    { value: "British Pound", data: "GBP" },
+    { value: "US Dollar", data: "USD" },
+    { value: 'Algerian dinar', data: 'DZD' },
+    { value: 'European euro', data: 'EUR' },
+    { value: 'Angolan kwanza', data: 'AOA' },
+    { value: 'East Caribbean dollar', data: 'XCD' }
+  ];
+
+  $("#autocomplete").autocomplete({
+    lookup: function(query, done) {
+      console.log(query);
+      var result = {};
+      var suggestions = [];
+      var nAutoUrl = nSets.autoUrl + "&" + nSets.appId + "&" + nSets.appKey
+
+      $.ajax( nAutoUrl + "&q=" + query )
+        .fail(function( data ) {
+          console.log(nAutoUrl);
+          console.log("Nutri api call failed");
+        })
+        .done(function( data ) {
+          console.log(data);
+          console.log(nAutoUrl);
+          for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              var thisLabel = data[key].text;
+              suggestions.push({"value": thisLabel, "data": key})
+              console.log(suggestions);
+            }
+          }
+          result["suggestions"] = suggestions;
+          done(result);
+
+
+        })
+
+          // console.log(value);
+
+      }
+
   })
 
-  $('#search-bar').on('change', function() {
-  var value = $(this).val();
-  alert(value);
-});
 })
 
 
@@ -78,11 +129,13 @@ app.SearchView = Backbone.View.extend({
   autocompleteBar: function() {
 
     var value = this.$input.val().trim();
-    $.ajax(nSets.autoUrl + value + "&" + nSets.appId + "&" + nSets.appKey)
+    var nAutoUrl = nSets.autoUrl + value + "&" + nSets.appId + "&" + nSets.appKey
+    $.ajax(nAutoUrl)
       .fail(function( data ) {
         console.log("Nutri api call failed");
       })
       .done(function( data ) {
+        console.log(nAutoUrl);
         $("option").remove();
         for (var i = 0; i < data.length; i++) {
           $("#food-list").append("<option class='food-option' value='" + data[i].text + "' />");
