@@ -1,3 +1,5 @@
+// TODO Make sure this does not use autocomplete plugin and will work when sub'd in
+
 var app = app || {};
 
 var nSets = {
@@ -12,6 +14,11 @@ var nSets = {
 }
 
 
+
+// TODO Autocomplete as people are typing. Once they click, send the autocompleted-text to the nutri search function to retrieve the final options. Use a <datalist> tag in template and populate with results from the autocomplete function.
+
+// TODO: Learn the jquery autocomplete tutorial here: https://designshack.net/articles/javascript/create-a-simple-autocomplete-with-html5-jquery/
+
 $(function(){
   $("body").click(function( event ) {
     console.log(event.target);
@@ -19,12 +26,19 @@ $(function(){
 
   var value;
 
-  // $('#autocomplete').on('change', function() {
-  //   value = $(this).val();
-  //   // alert(value);
-  // });
+  $('#autocomplete').on('change', function() {
+    value = $(this).val();
+    // alert(value);
+  });
 
-
+  var currencies = [
+    { value: "British Pound", data: "GBP" },
+    { value: "US Dollar", data: "USD" },
+    { value: 'Algerian dinar', data: 'DZD' },
+    { value: 'European euro', data: 'EUR' },
+    { value: 'Angolan kwanza', data: 'AOA' },
+    { value: 'East Caribbean dollar', data: 'XCD' }
+  ];
 
   $("#autocomplete").autocomplete({
     lookup: function(query, done) {
