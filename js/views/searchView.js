@@ -23,11 +23,7 @@ $(function(){
     console.log(event.target);
   });
 
-  $('input').bind('keydown', function(e){
-    if(e.which == '38' || e.which == '40' || e.which == "13"){
-      e.preventDefault();
-    }
-  });
+
 
 })
 
@@ -40,7 +36,7 @@ app.SearchView = Backbone.View.extend({
   events: {
     "click #leo-auto-bar": "edit",
     "click .food-option": "printOption",
-    "keypress #leo-auto-bar": "keypress",
+    "keypress #leo-auto-bar": "onKeypress",
     // "keypress #autocomplete": "updateOnEnter"
   },
 
@@ -96,6 +92,9 @@ app.SearchView = Backbone.View.extend({
         })
         .done(function( data ) {
           console.log(data);
+          for (var i in data.hits) {
+            console.log(data.hits[i].fields.item_name)
+          }
         })
     }
     // else {
@@ -105,7 +104,7 @@ app.SearchView = Backbone.View.extend({
 
 
 
-  keypress: function ( ) {
+  onKeypress: function ( ) {
 
     var self = this;
 
@@ -114,13 +113,19 @@ app.SearchView = Backbone.View.extend({
     if ($(".leo-auto-suggestions").children().length > 0) {
       $(".leo-auto-suggestions").removeClass('hidden');
     }
-    $("#leo-auto-bar").keydown(function( e ) {
+    $("#leo-auto-bar").off("keydown").keydown(function( e ) {
+
+      $('input').bind('keydown', function(e){
+        if(e.which == '38' || e.which == '40' || e.which == "13"){
+          e.preventDefault();
+        }
+      });
 
       console.log(e.which);
 
       if (e.which != keys.DOWN && e.which != keys.UP && e.which != keys.ENTER && e.which != keys.TAB && e.which != keys.LEFT && e.which != keys.RIGHT && e.which != keys.ESC) {
 
-        var leoAutoUrl = leoSets.autoUrl + "&" + leoSets.appId + "&" + leoSets.appKey
+        var leoAutoUrl = nSets.autoUrl + "&" + nSets.appId + "&" + nSets.appKey
 
         var query = $(this).val().trim();
         if ( query != "" ) {
@@ -156,16 +161,10 @@ app.SearchView = Backbone.View.extend({
           }
       };
 
-      // var container = $("div"),
-      //     scrollTo = $(".leo-selected");
-
       if (e.which === keys.DOWN) {
         trackSuggest ++;
         $(".leo-auto-suggest").removeClass("leo-selected");
         $("[data-index*='" + trackSuggest + "']").addClass("leo-selected");
-        // container.animate({
-        //   scrollTop: scrollTo.offset().top
-        // })
       } else if (e.which === keys.UP && trackSuggest > 0) {
         trackSuggest --;
         $(".leo-auto-suggest").removeClass("leo-selected");
@@ -176,6 +175,8 @@ app.SearchView = Backbone.View.extend({
         self.onEnter();
       }
     })
+
+    // $("#leo-auto-bar").off("keydown");
   },
 
 
