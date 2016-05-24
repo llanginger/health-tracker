@@ -1,81 +1,47 @@
 var app = app || {};
 
+var keys = {
+  ESC: 27,
+  TAB: 9,
+  ENTER: 13,
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40
+};
+
 var nSets = {
   searchUrl: "https://api.nutritionix.com/v1_1/search/",
   autoUrl: "https://api.nutritionix.com/v2/autocomplete?",
-  phrase: "Tacos",
   appId: "appId=02cd80d0",
   appKey: "appKey=421b1fb27190316a6585e273b648dd6f",
-  calMin: "",
-  calMax: "",
   fields: "fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat"
 }
-
 
 $(function(){
   $("body").click(function( event ) {
     console.log(event.target);
   });
 
-  var value;
-
-  // $('#autocomplete').on('change', function() {
-  //   value = $(this).val();
-  //   // alert(value);
-  // });
-
-
-
-  // $("#autocomplete").autocomplete({
-  //   lookup: function(query, done) {
-  //     console.log(query);
-  //     var result = {};
-  //     var suggestions = [];
-  //     var nAutoUrl = nSets.autoUrl + "&" + nSets.appId + "&" + nSets.appKey
-  //
-  //     $.ajax( nAutoUrl + "&q=" + query )
-  //       .fail(function( data ) {
-  //         console.log(nAutoUrl);
-  //         console.log("Nutri api call failed");
-  //       })
-  //       .done(function( data ) {
-  //         console.log(data);
-  //         console.log(nAutoUrl);
-  //         for (var key in data) {
-  //           if (data.hasOwnProperty(key)) {
-  //             var thisLabel = data[key].text;
-  //             suggestions.push({"value": thisLabel, "data": key})
-  //             console.log(suggestions);
-  //           }
-  //         }
-  //         result["suggestions"] = suggestions;
-  //         done(result);
-  //
-  //
-  //       })
-  //
-  //         // console.log(value);
-  //
-  //     }
-  //
-  // })
+  $('input').bind('keydown', function(e){
+    if(e.which == '38' || e.which == '40' || e.which == "13"){
+      e.preventDefault();
+    }
+  });
 
 })
 
 
 app.SearchView = Backbone.View.extend({
 
+
   el: "#search-div",
 
   events: {
-    "click input": "edit",
+    "click #leo-auto-bar": "edit",
     "click .food-option": "printOption",
+    "keypress #leo-auto-bar": "keypress",
     // "keypress #autocomplete": "updateOnEnter"
-  },
-
-  printOption: function() {
-    this.$option = this.$("option");
-    console.log(this.$option);
   },
 
   initialize: function() {
@@ -116,26 +82,102 @@ app.SearchView = Backbone.View.extend({
     //   this.clear();
     // }
   },
+  onEnter: function() {
 
-  autocompleteBar: function() {
-
+    console.log("onEnter triggered")
     var value = this.$input.val().trim();
-    var nAutoUrl = nSets.autoUrl + value + "&" + nSets.appId + "&" + nSets.appKey
-    $.ajax(nAutoUrl)
-      .fail(function( data ) {
-        console.log("Nutri api call failed");
-      })
-      .done(function( data ) {
-        console.log(nAutoUrl);
-        $("option").remove();
-        for (var i = 0; i < data.length; i++) {
-          $("#food-list").append("<option class='food-option' value='" + data[i].text + "' />");
-        }
-        console.log(data);
-        console.log(value);
-      })
 
+    if ( value ) {
+      // this.model.save({title: value});
+      console.log(value);
+      $.ajax(nSets.searchUrl + value + "?" + nSets.fields + "&" + nSets.appId + "&" + nSets.appKey)
+        .fail(function( data ) {
+          console.log("Nutri api call failed");
+        })
+        .done(function( data ) {
+          console.log(data);
+        })
+    }
+    // else {
+    //   this.clear();
+    // }
   },
+
+
+
+  keypress: function ( ) {
+
+    var self = this;
+
+    var trackSuggest = -1;
+
+    if ($(".leo-auto-suggestions").children().length > 0) {
+      $(".leo-auto-suggestions").removeClass('hidden');
+    }
+    $("#leo-auto-bar").keydown(function( e ) {
+
+      console.log(e.which);
+
+      if (e.which != keys.DOWN && e.which != keys.UP && e.which != keys.ENTER && e.which != keys.TAB && e.which != keys.LEFT && e.which != keys.RIGHT && e.which != keys.ESC) {
+
+        var leoAutoUrl = leoSets.autoUrl + "&" + leoSets.appId + "&" + leoSets.appKey
+
+        var query = $(this).val().trim();
+        if ( query != "" ) {
+          $.ajax( leoAutoUrl + "&q=" + query )
+            .fail(function( data ) {
+              alert("Nutri api call failed");
+            })
+            .done(function( data ) {
+              $(".leo-auto-suggestions").html("");
+              console.log(data);
+              console.log(query);
+              console.log(leoAutoUrl);
+              for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                  var option = data[key].text;
+                  $(".leo-auto-suggestions").append("<div class='leo-auto-suggest' data-index='" + key + "'>" + option + "</div>");
+                }
+              }
+              $(".leo-auto-suggestions").removeClass("hidden")
+              $(".leo-auto-suggest").click(function(){
+                $("#leo-auto-bar").val($(this).text());
+                $(".leo-auto-suggestions").addClass('hidden');
+              })
+              $(".leo-auto-suggest").mouseenter(function(){
+                $(".leo-auto-suggest").removeClass("leo-selected");
+                $(this).addClass('leo-selected');
+                trackSuggest = -1
+              });
+              $(".leo-auto-suggest").mouseleave(function() {
+                $(this).removeClass("leo-selected");
+              });
+            })
+          }
+      };
+
+      // var container = $("div"),
+      //     scrollTo = $(".leo-selected");
+
+      if (e.which === keys.DOWN) {
+        trackSuggest ++;
+        $(".leo-auto-suggest").removeClass("leo-selected");
+        $("[data-index*='" + trackSuggest + "']").addClass("leo-selected");
+        // container.animate({
+        //   scrollTop: scrollTo.offset().top
+        // })
+      } else if (e.which === keys.UP && trackSuggest > 0) {
+        trackSuggest --;
+        $(".leo-auto-suggest").removeClass("leo-selected");
+        $("[data-index*='" + trackSuggest + "']").addClass("leo-selected");
+      } else if (e.which === keys.ENTER) {
+        console.log($(".leo-selected").text())
+        $("#leo-auto-bar").val($(".leo-selected").text());
+        self.onEnter();
+      }
+    })
+  },
+
 
   // updateOnEnter: function( e ) {
   //   if (e.which === ENTER_KEY ) {
