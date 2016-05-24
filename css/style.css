@@ -18,7 +18,7 @@ header {
   background: #ccddff;
 }
 
-#search-bar {
+#leo-auto-bar {
   background: #ffccdd;
   height: 30px;
   width: 600px;
@@ -26,6 +26,22 @@ header {
   position: absolute;
   left: 0;
   right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.leo-auto-suggestions {
+  position: absolute;
+  border: 1px solid #999;
+  background: #fff;
+  cursor: default;
+  width: 603px;
+  max-height: 200px;
+  overflow: auto;
+  left: 0;
+  right: 0;
+  top: 105px;
   margin-left: auto;
   margin-right: auto;
 
@@ -94,14 +110,7 @@ header {
   overflow: hidden;
 }
 
-.leo-auto-suggestions {
-  border: 1px solid #999;
-  background: #fff;
-  cursor: default;
-  width: 300px;
-  max-height: 200px;
-  overflow: auto;
-}
+
 
 .leo-selected {
   background: purple;
