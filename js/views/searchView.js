@@ -26,39 +26,39 @@ $(function(){
 
 
 
-  $("#autocomplete").autocomplete({
-    lookup: function(query, done) {
-      console.log(query);
-      var result = {};
-      var suggestions = [];
-      var nAutoUrl = nSets.autoUrl + "&" + nSets.appId + "&" + nSets.appKey
-
-      $.ajax( nAutoUrl + "&q=" + query )
-        .fail(function( data ) {
-          console.log(nAutoUrl);
-          console.log("Nutri api call failed");
-        })
-        .done(function( data ) {
-          console.log(data);
-          console.log(nAutoUrl);
-          for (var key in data) {
-            if (data.hasOwnProperty(key)) {
-              var thisLabel = data[key].text;
-              suggestions.push({"value": thisLabel, "data": key})
-              console.log(suggestions);
-            }
-          }
-          result["suggestions"] = suggestions;
-          done(result);
-
-
-        })
-
-          // console.log(value);
-
-      }
-
-  })
+  // $("#autocomplete").autocomplete({
+  //   lookup: function(query, done) {
+  //     console.log(query);
+  //     var result = {};
+  //     var suggestions = [];
+  //     var nAutoUrl = nSets.autoUrl + "&" + nSets.appId + "&" + nSets.appKey
+  //
+  //     $.ajax( nAutoUrl + "&q=" + query )
+  //       .fail(function( data ) {
+  //         console.log(nAutoUrl);
+  //         console.log("Nutri api call failed");
+  //       })
+  //       .done(function( data ) {
+  //         console.log(data);
+  //         console.log(nAutoUrl);
+  //         for (var key in data) {
+  //           if (data.hasOwnProperty(key)) {
+  //             var thisLabel = data[key].text;
+  //             suggestions.push({"value": thisLabel, "data": key})
+  //             console.log(suggestions);
+  //           }
+  //         }
+  //         result["suggestions"] = suggestions;
+  //         done(result);
+  //
+  //
+  //       })
+  //
+  //         // console.log(value);
+  //
+  //     }
+  //
+  // })
 
 })
 
@@ -70,7 +70,7 @@ app.SearchView = Backbone.View.extend({
   events: {
     "click input": "edit",
     "click .food-option": "printOption",
-    "keypress #search-bar": "updateOnEnter"
+    // "keypress #autocomplete": "updateOnEnter"
   },
 
   printOption: function() {
@@ -91,27 +91,30 @@ app.SearchView = Backbone.View.extend({
   },
 
   edit: function() {
-    this.$input.val("");
-    this.$el.addClass( "editing" )
+    if (this.$input.val() === "What did you just eat?"){
+      this.$input.val("");
+    };
+    this.$el.addClass( "editing" );
+    console.log(this.$input.val());
     console.log("Edit fired");
   },
 
   close: function() {
-    var value = this.$input.val().trim();
-
-    if ( value ) {
-      // this.model.save({title: value});
-      console.log(value);
-      $.ajax(nSets.searchUrl + value + "?" + nSets.fields + "&" + nSets.appId + "&" + nSets.appKey)
-        .fail(function( data ) {
-          console.log("Nutri api call failed");
-        })
-        .done(function( data ) {
-          console.log(data);
-        })
-    } else {
-      this.clear();
-    }
+    // var value = this.$input.val().trim();
+    //
+    // if ( value ) {
+    //   // this.model.save({title: value});
+    //   console.log(value);
+    //   $.ajax(nSets.searchUrl + value + "?" + nSets.fields + "&" + nSets.appId + "&" + nSets.appKey)
+    //     .fail(function( data ) {
+    //       console.log("Nutri api call failed");
+    //     })
+    //     .done(function( data ) {
+    //       console.log(data);
+    //     })
+    // } else {
+    //   this.clear();
+    // }
   },
 
   autocompleteBar: function() {
@@ -134,16 +137,17 @@ app.SearchView = Backbone.View.extend({
 
   },
 
-  updateOnEnter: function( e ) {
-    if (e.which === ENTER_KEY ) {
-      this.close();
-    } else {
-      this.autocompleteBar();
-    }
-  },
+  // updateOnEnter: function( e ) {
+  //   if (e.which === ENTER_KEY ) {
+  //     // this.close();
+  //     console.log("Enter key");
+  //   } else {
+  //     this.autocompleteBar();
+  //   }
+  // },
 
-  clear: function() {
-    this.model.destroy();
-  }
+  // clear: function() {
+  //   this.model.destroy();
+  // }
 
 })

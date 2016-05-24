@@ -128,7 +128,7 @@
 
     Autocomplete.formatResult = function (suggestion, currentValue) {
         var pattern = '(' + utils.escapeRegExChars(currentValue) + ')';
-        
+
         return suggestion.value
             .replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>')
             .replace(/&/g, '&amp;')
@@ -217,7 +217,7 @@
         onBlur: function () {
             this.enableKillerFn();
         },
-        
+
         abortAjax: function () {
             var that = this;
             if (that.currentRequest) {
@@ -350,7 +350,7 @@
                     that.el.val(that.currentValue);
                     that.hide();
                 }
-                
+
                 that.stopKillSuggestions();
             }, 50);
         },
@@ -665,7 +665,7 @@
                 that.select(0);
                 return;
             }
-
+            // LOOK_HERE
             // Build suggestions inner HTML:
             $.each(that.suggestions, function (i, suggestion) {
                 if (groupBy){

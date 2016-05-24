@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="js/lib/jquery.autocomplete.js"></script>
+    <!-- <script src="js/lib/jquery.autocomplete.js"></script> -->
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/backbone-min.js"></script>
 
@@ -34,14 +34,19 @@
     <div id="search-div">
       <button id="search-button">Search Now</button>
       <div id="searchfield">
-        <form><input type="text" name="currency" class="biginput edit" id="autocomplete" value="Hi there"/></form>
+        <form><input type="text" class="biginput edit" id="autocomplete" value="What did you just eat?"/></form>
       </div>
 
 
 
-      <!-- <input id="search-bar" class="edit" type="text" value="What did you just eat?" list="food-list" />
+      <input id="search-bar" class="edit" type="text" value="What did you just eat?" list="food-list" />
       <datalist id="food-list">
-      </datalist> -->
+      </datalist>
+
+      <form class="suggestion-form">
+        <input id="leo-auto-bar" class="" value="" type="text">
+        <div class="leo-auto-suggestions hidden"></div>
+      </form>
 
 
 

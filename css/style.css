@@ -86,3 +86,28 @@ header {
 #searchfield form .biginput:focus {
   color: #858585;
 }
+
+.leo-auto-suggest {
+  padding: 10px 5px;
+  font-size: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.leo-auto-suggestions {
+  border: 1px solid #999;
+  background: #fff;
+  cursor: default;
+  width: 300px;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.leo-selected {
+  background: purple;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
