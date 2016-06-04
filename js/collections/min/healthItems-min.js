@@ -1,1 +1,1 @@
-var app=app||{},FoodItems=Backbone.Firebase.Collection.extend({model:app.FoodItem,url:"https://glowing-inferno-6853.firebaseIO.com"});app.FoodItems=new FoodItems;
+var app=app||{},FoodItems=Backbone.Firebase.Collection.extend({model:app.FoodItem,url:"https://glowing-inferno-6853.firebaseIO.com",nextOrder:function(){return this.length?this.last().get("id")+1:1}});app.FoodItems=new FoodItems;

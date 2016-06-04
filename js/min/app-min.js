@@ -1,1 +1,1 @@
-var app=app||{},ENTER_KEY=13;$(function(){new app.SearchView});
+var app=app||{},ENTER_KEY=13;$(function(){new app.SearchView,new app.FoodItemView});

@@ -103,11 +103,24 @@ header {
   color: #858585;
 }
 
+#food-list {
+  display: flex;
+  flex-flow: wrap;
+}
+
 .leo-auto-suggest {
   padding: 10px 5px;
   font-size: 1.2em;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.food-item {
+  border: 1px red solid;
+  margin: 10px;
+  color: white;
+  padding-right: 20px;
+  background: #888;
 }
 
 

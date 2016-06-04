@@ -15,7 +15,7 @@ var nSets = {
   autoUrl: "https://api.nutritionix.com/v2/autocomplete?",
   appId: "appId=02cd80d0",
   appKey: "appKey=421b1fb27190316a6585e273b648dd6f",
-  fields: "fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat"
+  fields: "fields=*"
 }
 
 $(function(){
@@ -109,7 +109,8 @@ app.SearchView = Backbone.View.extend({
           for (var i in data.hits) {
             var info = data.hits[i].fields;
             console.log(info.item_name);
-            $("#food-list").append("<div class='food-item'><ul>" + "<li>" + info.item_name + "</li>" + " " + "<li>" + info.brand_name + "</li>" + " " + "<li>" + info.nf_calories + "</li>" + " " + "</li>")
+            $("#food-list").append("<div class='food-item' data-index='" + i + "'><ul>" + "<li>" + info.item_name + "</li>" + " " + "<li>" + info.brand_name + "</li>" + " " + "<li>" + info.nf_calories + "</li>" + " " + "</li>")
+            // TODO This needs to become a model that gets shipped out to a new FoodItemView
           }
         })
     }

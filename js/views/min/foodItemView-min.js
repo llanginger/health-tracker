@@ -1,1 +1,1 @@
-var app=app||{};
+var app=app||{};app.FoodItemView=Backbone.View.extend({el:".food-item",events:{click:"addFoodToLog"},initialize:function(){this.listenTo(this.model,"change",this.render)},render:function(){return this},addFoodToLog:function(o){console.log("add food call triggered"),console.log(o.target),console.log(this.$el)}});
