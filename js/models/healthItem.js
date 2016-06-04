@@ -4,6 +4,8 @@ app.FoodItem = Backbone.Model.extend({
   defaults: {
     title: "",
     calories: 0,
+    time: "",
+    url: "",
     completed: false
   },
 
@@ -14,4 +16,4 @@ app.FoodItem = Backbone.Model.extend({
   }
 })
 
-var foodItem = new app.FoodItem();
+// var foodItem = new app.FoodItem();

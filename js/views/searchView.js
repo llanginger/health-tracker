@@ -22,9 +22,6 @@ $(function(){
   $("body").click(function( event ) {
     console.log(event.target);
   });
-
-
-
 })
 
 
@@ -37,6 +34,8 @@ app.SearchView = Backbone.View.extend({
     "click #leo-auto-bar": "edit",
     "click .food-option": "printOption",
     "keypress #leo-auto-bar": "onKeypress",
+    "focus #leo-auto-bar": "showOptions",
+    "click": "hideOptions"
     // "keypress #autocomplete": "updateOnEnter"
   },
 
@@ -59,6 +58,18 @@ app.SearchView = Backbone.View.extend({
     this.$el.addClass( "editing" );
     console.log(this.$input.val());
     console.log("Edit fired");
+  },
+
+  showOptions: function() {
+    if ($(".leo-auto-suggestions").children().length > 0) {
+      $(".leo-auto-suggestions").removeClass('hidden');
+    }
+  },
+
+  hideOptions: function( event ) {
+    if ( event.target != $(".leo-auto-suggest") || event.target != $("#leo-auto-bar")) {
+    $(".leo-auto-suggestions").addClass("hidden");
+  }
   },
 
   close: function() {
@@ -91,9 +102,14 @@ app.SearchView = Backbone.View.extend({
           console.log("Nutri api call failed");
         })
         .done(function( data ) {
+          console.log(nSets.searchUrl + value + "?" + nSets.fields + "&" + nSets.appId + "&" + nSets.appKey)
+          $("#food-items").html("").append("<div id='food-list'></div>");
+
           console.log(data);
           for (var i in data.hits) {
-            console.log(data.hits[i].fields.item_name)
+            var info = data.hits[i].fields;
+            console.log(info.item_name);
+            $("#food-list").append("<div class='food-item'><ul>" + "<li>" + info.item_name + "</li>" + " " + "<li>" + info.brand_name + "</li>" + " " + "<li>" + info.nf_calories + "</li>" + " " + "</li>")
           }
         })
     }
@@ -101,6 +117,22 @@ app.SearchView = Backbone.View.extend({
     //   this.clear();
     // }
   },
+
+  // newAttributes: function() {
+  //   return {
+  //     title: this.$input.val().trim();
+  //     completed: false
+  //   };
+  // },
+  //
+  // createOnSubmit: function( event ) {
+  //   if (event.which !== ENTER || !this.$input.val().trim() ) {
+  //     return;
+  //   }
+  //
+  //   app.FoodItems.create( this.newAttributes() );
+  //   this.$input.val("");
+  // },
 
 
 
@@ -113,7 +145,7 @@ app.SearchView = Backbone.View.extend({
     if ($(".leo-auto-suggestions").children().length > 0) {
       $(".leo-auto-suggestions").removeClass('hidden');
     }
-    $("#leo-auto-bar").off("keydown").keydown(function( e ) {
+    $("#leo-auto-bar").off().keydown(function( e ) {
 
       $('input').bind('keydown', function(e){
         if(e.which == '38' || e.which == '40' || e.which == "13"){
