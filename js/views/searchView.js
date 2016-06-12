@@ -27,7 +27,6 @@ $(function(){
 
 app.SearchView = Backbone.View.extend({
 
-
   el: "#search-div",
 
   events: {
@@ -41,9 +40,12 @@ app.SearchView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo( this.model, "change", this.render );
+    this.listenTo( app.FoodItems, "add", this.addOne );
     this.render();
-    console.log("Something happened");
+    _.bindAll(this, "onEnter");
+    console.log("Init fired");
   },
+
 
   render: function() {
     this.$input = this.$(".edit");
@@ -72,6 +74,35 @@ app.SearchView = Backbone.View.extend({
   }
   },
 
+  newAttributes: function( title, calories, brand ) {
+    return {
+      title: this.title,
+      id: app.FoodItems.nextOrder(),
+      calories: this.calories,
+      brand: this.brand
+    }
+  },
+
+  resetFoodItems: function() {
+    app.FoodItems.reset();
+  },
+
+
+  newModel: function( title, calories, brand ) {
+
+    app.FoodItems.create({
+      title: title,
+      id: app.FoodItems.nextOrder(),
+      calories: calories,
+      brand: brand
+    });
+  },
+
+  addOne: function( foodItem ) {
+    var view = new app.FoodItemView({ model: foodItem });
+    $("#food-items").append( view.render().el );
+  },
+
   close: function() {
     // var value = this.$input.val().trim();
     //
@@ -91,6 +122,8 @@ app.SearchView = Backbone.View.extend({
   },
   onEnter: function() {
 
+    var self = this;
+
     console.log("onEnter triggered")
     var value = this.$input.val().trim();
 
@@ -102,15 +135,12 @@ app.SearchView = Backbone.View.extend({
           console.log("Nutri api call failed");
         })
         .done(function( data ) {
-          console.log(nSets.searchUrl + value + "?" + nSets.fields + "&" + nSets.appId + "&" + nSets.appKey)
-          $("#food-items").html("").append("<div id='food-list'></div>");
-
+          self.resetFoodItems();
           console.log(data);
           for (var i in data.hits) {
             var info = data.hits[i].fields;
-            console.log(info.item_name);
-            $("#food-list").append("<div class='food-item' data-index='" + i + "'><ul>" + "<li>" + info.item_name + "</li>" + " " + "<li>" + info.brand_name + "</li>" + " " + "<li>" + info.nf_calories + "</li>" + " " + "</li>")
-            // TODO This needs to become a model that gets shipped out to a new FoodItemView
+            // console.log(info.item_name);
+            self.newModel(info.item_name, info.nf_calories, info.brand_name);
           }
         })
     }
@@ -118,6 +148,8 @@ app.SearchView = Backbone.View.extend({
     //   this.clear();
     // }
   },
+
+  // $("#food-list").append("<div class='food-item' data-index='" + i + "'><ul>" + "<li>" + info.item_name + "</li>" + " " + "<li>" + info.brand_name + "</li>" + " " + "<li>" + info.nf_calories + "</li>" + " " + "</li>")
 
   // newAttributes: function() {
   //   return {
@@ -226,4 +258,4 @@ app.SearchView = Backbone.View.extend({
   //   this.model.destroy();
   // }
 
-})
+});

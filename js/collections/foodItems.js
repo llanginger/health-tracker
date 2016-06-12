@@ -8,8 +8,13 @@ var FoodItems = Backbone.Firebase.Collection.extend({
     if ( !this.length ) {
       return 1;
     }
-    return this.last().get("id") + 1;
+    var id = this.last().get(id);
+    // var id = this.length;
+    console.log(typeof id);
+    console.log(id);
+    return id+=1;
   },
+  
 
 })
 

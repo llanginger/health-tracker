@@ -42,12 +42,23 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/js\/collections\/healthItems.js": {
+	"\/js\/collections\/foodItems.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/js\/collections\/healthItems.js",
-		"outputAbbreviatedPath": "\/js\/collections\/min\/healthItems-min.js",
+		"inputAbbreviatedPath": "\/js\/collections\/foodItems.js",
+		"outputAbbreviatedPath": "\/js\/collections\/min\/foodItems-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/js\/collections\/min\/foodItems-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/collections\/min\/foodItems-min.js",
+		"outputAbbreviatedPath": "\/js\/collections\/min\/min\/foodItems-min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -152,12 +163,12 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/js\/models\/healthItem.js": {
+	"\/js\/models\/foodItem.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/js\/models\/healthItem.js",
-		"outputAbbreviatedPath": "\/js\/models\/min\/healthItem-min.js",
+		"inputAbbreviatedPath": "\/js\/models\/foodItem.js",
+		"outputAbbreviatedPath": "\/js\/models\/min\/foodItem-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -207,12 +218,12 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/js\/views\/foodItemView.js": {
+	"\/js\/views\/itemView.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/js\/views\/foodItemView.js",
-		"outputAbbreviatedPath": "\/js\/views\/min\/foodItemView-min.js",
+		"inputAbbreviatedPath": "\/js\/views\/itemView.js",
+		"outputAbbreviatedPath": "\/js\/views\/min\/itemView-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -235,6 +246,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/views\/min\/foodItemView-min.js",
 		"outputAbbreviatedPath": "\/js\/views\/min\/min\/foodItemView-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/js\/views\/min\/itemView-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/views\/min\/itemView-min.js",
+		"outputAbbreviatedPath": "\/js\/views\/min\/min\/itemView-min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,

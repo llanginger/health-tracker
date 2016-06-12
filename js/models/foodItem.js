@@ -6,6 +6,7 @@ app.FoodItem = Backbone.Model.extend({
     calories: 0,
     time: "",
     url: "",
+    id: "",
     completed: false
   },
 
