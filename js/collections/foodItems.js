@@ -4,7 +4,7 @@ var FoodItems = Backbone.Firebase.Collection.extend({
   model: app.FoodItem,
   url: "https://glowing-inferno-6853.firebaseIO.com",
 
-  nextOrder: function() {
+  nextId: function() {
     if ( !this.length ) {
       return 1;
     }
@@ -14,7 +14,7 @@ var FoodItems = Backbone.Firebase.Collection.extend({
     console.log(id);
     return id+=1;
   },
-  
+
 
 })
 

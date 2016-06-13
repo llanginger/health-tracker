@@ -18,11 +18,15 @@ var nSets = {
   fields: "fields=*"
 }
 
+
+
 $(function(){
   $("body").click(function( event ) {
     console.log(event.target);
   });
 })
+
+
 
 
 app.SearchView = Backbone.View.extend({
@@ -77,7 +81,7 @@ app.SearchView = Backbone.View.extend({
   newAttributes: function( title, calories, brand ) {
     return {
       title: this.title,
-      id: app.FoodItems.nextOrder(),
+      id: app.FoodItems.nextId(),
       calories: this.calories,
       brand: this.brand
     }
@@ -90,36 +94,43 @@ app.SearchView = Backbone.View.extend({
 
   newModel: function( title, calories, brand ) {
 
+    var date = new Date();
+
+    var dateObj = {
+      currDate: date.getDate(),
+      currDay: date.getDay(),
+      currMonth: date.getMonth(),
+      currYear: date.getFullYear(),
+      currHour: date.getHours(),
+    }
+
+    var amPm = function(){
+      if (dateObj.currHour > 12){
+        return dateObj.currHour - 12 + " pm";
+      } else {
+        return dateObj.currHour + " am";
+      }
+    }
+
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    var formattedDateTime = amPm() + ", " + days[dateObj.currDay] + " " + dateObj.currMonth + " " + dateObj.currYear;
+
     app.FoodItems.create({
       title: title,
-      id: app.FoodItems.nextOrder(),
+      // id: app.FoodItems.nextId(),
       calories: calories,
-      brand: brand
+      brand: brand,
+      date: formattedDateTime,
     });
   },
 
   addOne: function( foodItem ) {
     var view = new app.FoodItemView({ model: foodItem });
-    $("#food-items").append( view.render().el );
+    $("#item-view").append( view.render().el );
   },
 
-  close: function() {
-    // var value = this.$input.val().trim();
-    //
-    // if ( value ) {
-    //   // this.model.save({title: value});
-    //   console.log(value);
-    //   $.ajax(nSets.searchUrl + value + "?" + nSets.fields + "&" + nSets.appId + "&" + nSets.appKey)
-    //     .fail(function( data ) {
-    //       console.log("Nutri api call failed");
-    //     })
-    //     .done(function( data ) {
-    //       console.log(data);
-    //     })
-    // } else {
-    //   this.clear();
-    // }
-  },
+
   onEnter: function() {
 
     var self = this;
@@ -128,6 +139,8 @@ app.SearchView = Backbone.View.extend({
     var value = this.$input.val().trim();
 
     if ( value ) {
+
+      // $("#temp-items").html("");
       // this.model.save({title: value});
       console.log(value);
       $.ajax(nSets.searchUrl + value + "?" + nSets.fields + "&" + nSets.appId + "&" + nSets.appKey)
@@ -148,24 +161,6 @@ app.SearchView = Backbone.View.extend({
     //   this.clear();
     // }
   },
-
-  // $("#food-list").append("<div class='food-item' data-index='" + i + "'><ul>" + "<li>" + info.item_name + "</li>" + " " + "<li>" + info.brand_name + "</li>" + " " + "<li>" + info.nf_calories + "</li>" + " " + "</li>")
-
-  // newAttributes: function() {
-  //   return {
-  //     title: this.$input.val().trim();
-  //     completed: false
-  //   };
-  // },
-  //
-  // createOnSubmit: function( event ) {
-  //   if (event.which !== ENTER || !this.$input.val().trim() ) {
-  //     return;
-  //   }
-  //
-  //   app.FoodItems.create( this.newAttributes() );
-  //   this.$input.val("");
-  // },
 
 
 
@@ -245,17 +240,5 @@ app.SearchView = Backbone.View.extend({
   },
 
 
-  // updateOnEnter: function( e ) {
-  //   if (e.which === ENTER_KEY ) {
-  //     // this.close();
-  //     console.log("Enter key");
-  //   } else {
-  //     this.autocompleteBar();
-  //   }
-  // },
-
-  // clear: function() {
-  //   this.model.destroy();
-  // }
 
 });
