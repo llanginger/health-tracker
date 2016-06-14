@@ -5,10 +5,11 @@ app.FoodItemView = Backbone.View.extend({
 
   el: "#item-div",
 
-  // template: _.template( $("#food-items").html() ),
+  // template: _.template( $("#temp-template").html() ),
 
   events: {
-    "click .food-item" : "addFoodToLog"
+    "click option" : "selectFoodToLog",
+    "click .main-ate-that": "addFoodToLog"
 
   },
 
@@ -17,31 +18,47 @@ app.FoodItemView = Backbone.View.extend({
     // console.log(this.model.attributes)
     // console.log(this.$el);
     // this.render;
+
+    this.$select = $("#select-food-item");
     this.listenTo( this.model, "change", this.render );
     this.listenTo( this.model, "destroy", this.remove );
   },
 
-  render: function() {
-    console.log(this.$el)
-    // console.log(this.model.attributes)
-    // this.$el.html( this.template( this.model.attributes ) );
+  remove: function() {
 
-    this.$el.append("<div class='food-item'><ul>" +
-      "<li>" + "Thing you ate: " + this.model.get("title") + "</li>" +
-      "<li>" + "The company that made that nonsense: " + this.model.get("brand") + "</li>" +
-      "<li>" + "How many calories did that thing have? " + this.model.get("calories") + "</li>" +
-      "<li>" + "When did you eat it? " + this.model.get("date") + "</li>" +
-      // "<li>" + "No, like, specifically? " + this.model.get("time") + "</li>" + 
-      "</ul>" +
-      "<button class='ate-this'>I ate this!</button>")
+  },
+
+  render: function() {
+
+    this.$select.append("<option id='" +
+        this.model.get("id") + "'>" +
+        this.model.get("title") + ", by: " +
+        this.model.get("brand") + ".  " +
+        this.model.get("calories") + " calories!" +
+      "</option>");
+
+
+
     return this;
   },
 
 
+
   addFoodToLog: function( e ) {
+
+
+
+    console.log($("#select-food-item option:selected").attr("id"))
+
     console.log("add food call triggered");
-    console.log( e.target )
-    console.log( this.$el )
+
+    var id = $("#select-food-item option:selected").attr("id");
+
+    console.log(app.FoodItems.get(id).toJSON());
+
+    $("#food-log").append("<div>" + app.FoodItems.get(id).get("calories") + "</div>")
+    // console.log( e.target )
+    // console.log( this.$el )
   },
 
 

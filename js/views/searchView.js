@@ -148,6 +148,7 @@ app.SearchView = Backbone.View.extend({
           console.log("Nutri api call failed");
         })
         .done(function( data ) {
+          $("#select-food-item").html("");
           self.resetFoodItems();
           console.log(data);
           for (var i in data.hits) {
@@ -195,9 +196,6 @@ app.SearchView = Backbone.View.extend({
             })
             .done(function( data ) {
               $(".leo-auto-suggestions").html("");
-              console.log(data);
-              console.log(query);
-              console.log(leoAutoUrl);
               for (var key in data) {
                 if (data.hasOwnProperty(key)) {
                   var option = data[key].text;
@@ -233,6 +231,8 @@ app.SearchView = Backbone.View.extend({
         console.log($(".leo-selected").text())
         $("#leo-auto-bar").val($(".leo-selected").text());
         self.onEnter();
+      } else if (e.which === keys.ESC) {
+        $(".leo-auto-suggestions").html("");
       }
     })
 
