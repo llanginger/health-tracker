@@ -9,7 +9,6 @@ app.FoodItemView = Backbone.View.extend({
 
   events: {
     "click option" : "selectFoodToLog",
-    "click .main-ate-that": "addFoodToLog"
 
   },
 
@@ -44,22 +43,7 @@ app.FoodItemView = Backbone.View.extend({
 
 
 
-  addFoodToLog: function( e ) {
 
-
-
-    console.log($("#select-food-item option:selected").attr("id"))
-
-    console.log("add food call triggered");
-
-    var id = $("#select-food-item option:selected").attr("id");
-
-    console.log(app.FoodItems.get(id).toJSON());
-
-    $("#food-log").append("<div>" + app.FoodItems.get(id).get("calories") + "</div>")
-    // console.log( e.target )
-    // console.log( this.$el )
-  },
 
 
 })
