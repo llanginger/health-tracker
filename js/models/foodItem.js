@@ -4,7 +4,7 @@ app.FoodItem = Backbone.Model.extend({
   defaults: {
     title: "",
     calories: 0,
-    completed: false
+    completed: false,
   },
 
   toggle: function(){

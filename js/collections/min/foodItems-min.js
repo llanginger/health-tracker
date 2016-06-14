@@ -1,1 +1,1 @@
-var app=app||{},FoodItems=Backbone.Collection.extend({model:app.FoodItem,url:"/model/info",nextId:function(){if(!this.length)return 1;var o=this.last().get(o);return console.log(typeof o),console.log(o),o+=1}});app.FoodItems=new FoodItems;
+var app=app||{},FoodItems=Backbone.Firebase.Collection.extend({model:app.FoodItem,url:"https://glowing-inferno-6853.firebaseIO.com/tempList"});app.FoodItems=new FoodItems;

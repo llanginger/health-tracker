@@ -1,5 +1,4 @@
 var app = app || {};
-console.log("foodItemView here")
 
 app.FoodItemView = Backbone.View.extend({
 

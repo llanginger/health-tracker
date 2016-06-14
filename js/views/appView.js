@@ -45,29 +45,21 @@ app.AppView = Backbone.View.extend({
 
   initialize: function() {
     this.listenTo( this.model, "change", this.render );
-    this.listenTo( app.FoodItems, "add", this.addOne );
+    this.listenTo( app.FoodItems, "add", this.createList );
     this.render();
     _.bindAll(this, "onEnter");
     console.log("Init fired");
   },
 
-  addFoodToLog: function( e ) {
-
-
-
-    console.log($("#select-food-item option:selected").attr("id"))
-
-    console.log("add food call triggered");
+  addFoodToLog: function() {
 
     var id = $("#select-food-item option:selected").attr("id");
 
-    console.log(app.FoodItems.get(id).toJSON());
+    app.FoodLog.push(app.FoodItems.get(id));
 
-    $("#food-log").append("<div>" + app.FoodItems.get(id).get("calories") + "</div>")
-    // console.log( e.target )
-    // console.log( this.$el )
+    this.renderLog(app.FoodItems.get(id));
+
   },
-
 
   render: function() {
     this.$input = this.$(".edit");
@@ -92,18 +84,10 @@ app.AppView = Backbone.View.extend({
 
   hideOptions: function( event ) {
     if ( event.target != $(".leo-auto-suggest") || event.target != $("#leo-auto-bar")) {
-    $(".leo-auto-suggestions").addClass("hidden");
-  }
-  },
-
-  newAttributes: function( title, calories, brand ) {
-    return {
-      title: this.title,
-      id: app.FoodItems.nextId(),
-      calories: this.calories,
-      brand: this.brand
+      $(".leo-auto-suggestions").addClass("hidden");
     }
   },
+
 
   resetFoodItems: function() {
     app.FoodItems.reset();
@@ -136,16 +120,22 @@ app.AppView = Backbone.View.extend({
 
     app.FoodItems.create({
       title: title,
-      // id: app.FoodItems.nextId(),
       calories: calories,
       brand: brand,
       date: formattedDateTime,
     });
   },
 
-  addOne: function( foodItem ) {
+  createList: function( foodItem ) {
     var view = new app.FoodItemView({ model: foodItem });
     $("#item-view").append( view.render().el );
+  },
+
+  renderLog: function( foodLogItem ) {
+
+    console.log("log render fired");
+    var logView = new app.LogView({ model: foodLogItem });
+
   },
 
 
