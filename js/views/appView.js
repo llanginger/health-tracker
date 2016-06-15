@@ -39,13 +39,15 @@ app.AppView = Backbone.View.extend({
     "keypress #leo-auto-bar": "onKeypress",
     "focus #leo-auto-bar": "showOptions",
     "click": "hideOptions",
-    "click .main-ate-that": "addFoodToLog"
+    "click .main-ate-that": "addFoodToLog",
+    "click #clear-log": "clearFoodLog"
     // "keypress #autocomplete": "updateOnEnter"
   },
 
   initialize: function() {
     this.listenTo( this.model, "change", this.render );
     this.listenTo( app.FoodItems, "add", this.createList );
+    this.listenTo( app.FoodLog, "add", this.renderLog );
     this.render();
     _.bindAll(this, "onEnter");
     console.log("Init fired");
@@ -55,10 +57,12 @@ app.AppView = Backbone.View.extend({
 
     var id = $("#select-food-item option:selected").attr("id");
 
-    app.FoodLog.push(app.FoodItems.get(id));
-
-    this.renderLog(app.FoodItems.get(id));
-
+    app.FoodLog.create({
+      title: app.FoodItems.get(id).get("title"),
+      brand: app.FoodItems.get(id).get("brand"),
+      calories: app.FoodItems.get(id).get("calories"),
+      date: app.FoodItems.get(id).get("date")
+    });
   },
 
   render: function() {
@@ -91,6 +95,12 @@ app.AppView = Backbone.View.extend({
 
   resetFoodItems: function() {
     app.FoodItems.reset();
+  },
+
+  clearFoodLog: function(){
+    console.log("food Log Cleared");
+    app.FoodLog.reset();
+    $("#food-log").html("");
   },
 
 

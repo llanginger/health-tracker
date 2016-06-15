@@ -5,7 +5,7 @@ app.LogView = Backbone.View.extend({
   el: "#food-log",
 
   events: {
-    "click": "dosomething"
+  
   },
 
   initialize: function() {
@@ -15,10 +15,6 @@ app.LogView = Backbone.View.extend({
     this.listenTo( this.model, "change", this.render );
     this.listenTo( this.model, "destroy", this.remove );
 
-  },
-
-  dosomething: function() {
-    "thing"
   },
 
   render: function() {

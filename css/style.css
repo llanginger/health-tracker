@@ -126,11 +126,11 @@ select {
   background-color: #888;
 }
 
-#food-log::after {
+/*#food-log::after {
   content: "Food log";
   position: relative;
   font-size: 24px;
-}
+}*/
 
 .leo-auto-suggest {
   padding: 10px 5px;
