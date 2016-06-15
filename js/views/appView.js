@@ -40,7 +40,8 @@ app.AppView = Backbone.View.extend({
     "focus #leo-auto-bar": "showOptions",
     "click": "hideOptions",
     "click .main-ate-that": "addFoodToLog",
-    "click #clear-log": "clearFoodLog"
+    "click #clear-log": "clearFoodLog",
+    "click option": "thisCalories"
     // "keypress #autocomplete": "updateOnEnter"
   },
 
@@ -51,6 +52,11 @@ app.AppView = Backbone.View.extend({
     this.render();
     _.bindAll(this, "onEnter");
     console.log("Init fired");
+  },
+
+  thisCalories: function() {
+    var id = $("#select-food-item option:selected").attr("id");
+    $("#item-cals").html("That has: " + Math.round(app.FoodItems.get(id).get("calories")) + " calories!");
   },
 
   addFoodToLog: function() {
@@ -101,6 +107,7 @@ app.AppView = Backbone.View.extend({
     console.log("food Log Cleared");
     app.FoodLog.reset();
     $("#food-log").html("");
+    $("#total-cals").html("");
   },
 
 

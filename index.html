@@ -40,14 +40,15 @@
 
     <div id="search-div" class="col-md-6">
 
-        <input id="leo-auto-bar" class="edit" value="What did you just eat?" type="text" />
+        <input id="leo-auto-bar" class="edit" value="What did you just eat?" type="text" autocomplete="off"/>
         <div class="leo-auto-suggestions hidden"></div>
     </div>
 
     <div id="item-div" class="col-md-6">
-      <select id="select-food-item" class="form-control" size="15">
+      <select id="select-food-item" class="form-control" size="10">
       </select>
       <button type="button" class="btn btn-success main-ate-that">I Ate That!</button>
+      <div id="item-cals">Click something to see how many calories it has!</div>
     </div>
 
     </div>
@@ -57,11 +58,15 @@
 
 
     <!-- Food Log here -->
-    <button id="clear-log">Clear Food Log</button>
-    <div id="food-log">
-
+    <div class="row">
+      <div class="col-md-6 col-md-offset-6">
+        <button id="clear-log">Clear Food Log</button>
+        <div id="total-cals">Total calories tracked: 0</div>
+        <div id="food-log"></div>
+      </div>
 
     </div>
+
 
   </div>
 
