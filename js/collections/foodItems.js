@@ -6,3 +6,10 @@ var FoodItems = Backbone.Firebase.Collection.extend({
 })
 
 app.FoodItems = new FoodItems();
+
+
+var MasterCollection = Backbone.Firebase.Collection.extend({
+  url: "https://glowing-inferno-6853.firebaseIO.com",
+})
+
+app.MasterCollection = new MasterCollection();

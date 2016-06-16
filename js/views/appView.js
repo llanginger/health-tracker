@@ -41,11 +41,13 @@ app.AppView = Backbone.View.extend({
     "click": "hideOptions",
     "click .main-ate-that": "addFoodToLog",
     "click #clear-log": "clearFoodLog",
-    "click option": "thisCalories"
+    "click option": "thisCalories",
+    "click .leo-auto-suggest": "onEnter"
     // "keypress #autocomplete": "updateOnEnter"
   },
 
   initialize: function() {
+
     this.listenTo( this.model, "change", this.render );
     this.listenTo( app.FoodItems, "add", this.createList );
     this.listenTo( app.FoodLog, "add", this.renderLog );
@@ -56,7 +58,7 @@ app.AppView = Backbone.View.extend({
 
   thisCalories: function() {
     var id = $("#select-food-item option:selected").attr("id");
-    $("#item-cals").html("That has: " + Math.round(app.FoodItems.get(id).get("calories")) + " calories!");
+    $("#item-cals").html("That has: " + "<span class='accent-color'>" + Math.round(app.FoodItems.get(id).get("calories")) + "</span> calories!");
   },
 
   addFoodToLog: function() {
@@ -72,6 +74,7 @@ app.AppView = Backbone.View.extend({
   },
 
   render: function() {
+
     this.$input = this.$(".edit");
     console.log(JSON.stringify(this.model))
     return this;
@@ -106,8 +109,9 @@ app.AppView = Backbone.View.extend({
   clearFoodLog: function(){
     console.log("food Log Cleared");
     app.FoodLog.reset();
+
     $("#food-log").html("");
-    $("#total-cals").html("");
+    $("#total-cals").html("").text("Total calories tracked: 0");
   },
 
 
@@ -245,9 +249,12 @@ app.AppView = Backbone.View.extend({
       };
 
       if (e.which === keys.DOWN) {
-        trackSuggest ++;
-        $(".leo-auto-suggest").removeClass("leo-selected");
-        $("[data-index*='" + trackSuggest + "']").addClass("leo-selected");
+        // Check to make sure the user isn't able to scroll past the end of the available options
+        if (trackSuggest <= $(".leo-auto-suggest").length - 2){
+          trackSuggest ++;
+          $(".leo-auto-suggest").removeClass("leo-selected");
+          $("[data-index*='" + trackSuggest + "']").addClass("leo-selected");
+        }
       } else if (e.which === keys.UP && trackSuggest > 0) {
         trackSuggest --;
         $(".leo-auto-suggest").removeClass("leo-selected");

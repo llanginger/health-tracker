@@ -31,8 +31,7 @@ app.FoodItemView = Backbone.View.extend({
     this.$select.append("<option id='" +
         this.model.get("id") + "'>" +
         this.model.get("title") + ", by: " +
-        this.model.get("brand") + ".  " +
-        this.model.get("calories") + " calories!" +
+        this.model.get("brand") +
       "</option>");
 
 

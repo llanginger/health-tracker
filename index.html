@@ -5,7 +5,11 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Jura:400,600' rel='stylesheet' type='text/css'>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/5ebdcf9dc7.js"></script>
     <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/backbone-min.js"></script>
@@ -25,33 +29,38 @@
     <script src="js/app.js"></script>
     <script src="js/appComponents.js"></script>
   </head>
-  <header>
-    Track your health stuff!
-  </header>
+  <header></header>
   <body id="health-app">
 
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <div id="chart_div"></div> -->
+
   <div id= "app" class="container">
 
-  <div class="row">
-
-
-
-    <div id="search-div" class="col-md-6">
-
-        <input id="leo-auto-bar" class="edit" value="What did you just eat?" type="text" autocomplete="off"/>
-        <div class="leo-auto-suggestions hidden"></div>
+    <div class="row">
+      <div id="logo" class="col-xs-12 text-center">
+        <h1>YOU ATE WHAT NOW??</h1>
+      </div>
     </div>
 
-    <div id="item-div" class="col-md-6">
-      <select id="select-food-item" class="form-control" size="10">
-      </select>
-      <button type="button" class="btn btn-success main-ate-that">I Ate That!</button>
-      <div id="item-cals">Click something to see how many calories it has!</div>
+
+    <div class="row">
+      <div id="search-div" class="col-md-12">
+
+          <input id="leo-auto-bar" class="edit" value="What did you just eat?" type="text" autocomplete="off"/>
+          <div class="leo-auto-suggestions hidden"></div>
+      </div>
     </div>
 
+
+    <div class="row">
+      <div id="item-div" class="col-md-12 text-center">
+        <select id="select-food-item" class="form-control" size="7">
+        </select>
+        <div id="item-cals">Click something to see how many calories it has!</div>
+        <button type="button" class="btn main-ate-that">I Totally Ate That!</button>
+      </div>
     </div>
+
+
     <hr />
 
     <!-- Options here -->
@@ -59,10 +68,10 @@
 
     <!-- Food Log here -->
     <div class="row">
-      <div class="col-md-6 col-md-offset-6">
-        <button id="clear-log">Clear Food Log</button>
+      <div class="col-md-12 text-center">
         <div id="total-cals">Total calories tracked: 0</div>
         <div id="food-log"></div>
+        <button id="clear-log">Clear Food Log</button>
       </div>
 
     </div>

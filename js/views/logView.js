@@ -21,10 +21,11 @@ app.LogView = Backbone.View.extend({
 
     console.log("logview something happened")
 
-    this.$el.append("<div class='logged-item'><ul>" +
-    "<li>" + this.model.get("title") + ", by: " + this.model.get("brand") + ".  " + "</li>" +
-    "<li>" + this.model.get("calories") + " calories!" + "</li>" +
-      "</ul></div>");
+    this.$el.append("<div class='logged-item'>" +
+    this.model.get("title") + ", by: " + this.model.get("brand") + ".  " +
+    this.model.get("calories") + " calories on " +
+    this.model.get("date") +
+    "</div>");
 
     this.calculateCalories();
 
@@ -37,7 +38,7 @@ app.LogView = Backbone.View.extend({
     var addCalories = $.each(calorieArray, function() {
       totalCalories += this;
     })
-    $("#total-cals").html("Total calories tracked: " + Math.round(totalCalories));
+    $("#total-cals").html("Total calories consumed: <span class='accent-color'>" + Math.round(totalCalories) + "</span>!");
 
   }
 })

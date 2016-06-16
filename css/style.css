@@ -1,22 +1,26 @@
-/** {
-  border: 1px dashed red;
-}*/
+* {
+  font-family: jura;
+}
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 60px;
-  /*margin: 20px;*/
-  background: honeydew;
-  padding: 0px;
+  height: 20px;
+  background: #FFA000;
+}
+
+#health-app {
+  background: #FFC107;
 }
 
 #search-div {
-  height: 200px;
+  /*height: 200px;*/
   /*width: 45%;*/
   /*background: #ccddff;*/
+}
+
+#logo {
+  color: #FF5252;
+  font-weight: 600;
+  -webkit-filter: drop-shadow(2px 2px 3px #FFECB3);
 }
 
 #select-food-item {
@@ -26,7 +30,7 @@ header {
 }
 
 #leo-auto-bar {
-  background: #ffccdd;
+  background: white;
   height: 30px;
   width: 100%;
   text-align: center;
@@ -37,6 +41,29 @@ header {
 
 }
 
+/*#clear-log {
+  width: 100%;
+  margin-bottom: 20px;
+
+}*/
+
+#total-cals, #item-cals {
+  font-size: 20px;
+  padding: 10px;
+  background: #FFECB3;
+  margin-top: 10px;
+  width: 100%;
+  border: 1px #FFA000 solid;
+}
+
+
+
+.accent-color {
+  color: #FF5252;
+}
+
+
+
 select {
   margin-bottom: 10px;
   overflow: auto;
@@ -44,12 +71,19 @@ select {
 
 
 
-.main-ate-that {
+.main-ate-that, #clear-log {
   position: relative;
+  background: #FF5252;
+  color: white;
   /*z-index: -1;*/
   margin-top: 10px;
   height: 40px;
   width: 100%;
+}
+
+#clear-log {
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 .leo-auto-suggestions {
@@ -89,8 +123,7 @@ select {
 
 
 #item-div {
-  display: flex;
-  flex-flow: wrap;
+
 }
 
 #food-log {
@@ -98,8 +131,9 @@ select {
   margin-top: 10px;
   overflow-y: auto;
   width: 100%;
-  height: 200px;
-  background-color: honeydew;
+  /*min-height: 50px;*/
+  max-height: 150px;
+  background-color: white;
   margin-bottom: 20px;
 }
 
@@ -120,10 +154,22 @@ select {
   background: #888;
 }
 
+.logged-item {
+  text-align: center;
+  background-color: #FFECB3;
+  margin: 5px;
+  padding: 5px;
+  border: 1px #FFC107 solid;
+}
+
+.logged-item:hover {
+  background-color: #FFC107;
+  color: white;
+}
 
 
 .leo-selected {
-  background: purple;
+  background: #FF5252;
   color: white;
 }
 
