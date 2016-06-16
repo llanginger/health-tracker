@@ -129,7 +129,10 @@ option {
 
 #food-log {
   position: relative;
-  border: 2px solid white;
+  border-bottom: 5px solid #CFD8DC;
+  border-top: 5px solid #CFD8DC;
+  /*padding-bottom: 10px;
+  padding-top: 10px;*/
   margin-top: 10px;
   overflow-y: auto;
   width: 100%;
@@ -159,9 +162,9 @@ option {
   font-size: 18px;
   background-color: #607D8B;
   color: white;
-  margin: 5px;
+  margin: 10px;
   padding: 5px;
-  border: 2px #CFD8DC solid;
+  /*border: 2px white solid;*/
 }
 
 .logged-item:hover {
