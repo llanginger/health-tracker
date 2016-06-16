@@ -2,13 +2,17 @@
   font-family: jura;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 header {
   height: 20px;
-  background: #FFA000;
+  background: #455A64;
 }
 
 #health-app {
-  background: #FFC107;
+  background: #607D8B;
 }
 
 #search-div {
@@ -18,9 +22,9 @@ header {
 }
 
 #logo {
-  color: #FF5252;
+  color: #FFFFFF;
   font-weight: 600;
-  -webkit-filter: drop-shadow(2px 2px 3px #FFECB3);
+  /*-webkit-filter: drop-shadow(2px 2px 1px #CFD8DC);*/
 }
 
 #select-food-item {
@@ -38,6 +42,7 @@ header {
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
 
 }
 
@@ -50,16 +55,22 @@ header {
 #total-cals, #item-cals {
   font-size: 20px;
   padding: 10px;
-  background: #FFECB3;
+  background: #CFD8DC;
   margin-top: 10px;
   width: 100%;
-  border: 1px #FFA000 solid;
+  /*height: 43px;*/
+  border: 1px #727272 solid;
+  border-radius: 5px;
+}
+
+#item-cals {
+  text-align: center;
 }
 
 
 
 .accent-color {
-  color: #FF5252;
+  color: #FF4081;
 }
 
 
@@ -73,16 +84,16 @@ select {
 
 .main-ate-that, #clear-log {
   position: relative;
-  background: #FF5252;
+  background: #FF4081;
   color: white;
   /*z-index: -1;*/
   margin-top: 10px;
-  height: 40px;
+  height: 50px;
   width: 100%;
 }
 
 #clear-log {
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
   margin-top: 0px;
 }
 
@@ -100,26 +111,16 @@ select {
 
 }
 
+.leo-selected {
+  background: #FF4081;
+  color: white;
+}
 
-.autocomplete-suggestions {
-  border: 1px solid #999;
-  background: #fff;
-  cursor: default;
-  overflow: auto;
+
+option {
+  text-align: center;
 }
-.autocomplete-suggestion {
-  padding: 10px 5px;
-  font-size: 1.2em;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.autocomplete-selected {
-  background: #f0f0f0;
-}
-.autocomplete-suggestions strong {
-  font-weight: normal;
-  color: #3399ff;
-}
+
 
 
 #item-div {
@@ -128,16 +129,15 @@ select {
 
 #food-log {
   position: relative;
+  border: 2px solid white;
   margin-top: 10px;
   overflow-y: auto;
   width: 100%;
   /*min-height: 50px;*/
   max-height: 150px;
-  background-color: white;
+  background-color: #CFD8DC;
   margin-bottom: 20px;
 }
-
-
 
 .leo-auto-suggest {
   padding: 10px 5px;
@@ -156,23 +156,46 @@ select {
 
 .logged-item {
   text-align: center;
-  background-color: #FFECB3;
+  font-size: 18px;
+  background-color: #607D8B;
+  color: white;
   margin: 5px;
   padding: 5px;
-  border: 1px #FFC107 solid;
+  border: 2px #CFD8DC solid;
 }
 
 .logged-item:hover {
-  background-color: #FFC107;
-  color: white;
+  background-color: #FFFFFF;
+  color: black;
 }
 
 
-.leo-selected {
-  background: #FF5252;
-  color: white;
-}
 
 .hidden {
   display: none;
 }
+
+
+
+
+
+
+/*.autocomplete-suggestions {
+  border: 1px solid #999;
+  background: #fff;
+  cursor: default;
+  overflow: auto;
+}
+.autocomplete-suggestion {
+  padding: 10px 5px;
+  font-size: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.autocomplete-selected {
+  background: #f0f0f0;
+}
+.autocomplete-suggestions strong {
+  font-weight: normal;
+  color: #3399ff;
+}*/

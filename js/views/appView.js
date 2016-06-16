@@ -161,6 +161,7 @@ app.AppView = Backbone.View.extend({
 
 
   onEnter: function() {
+    $(".leo-auto-suggestions").html("");
 
     var self = this;
 
@@ -178,6 +179,7 @@ app.AppView = Backbone.View.extend({
         })
         .done(function( data ) {
           $("#select-food-item").html("");
+
           self.resetFoodItems();
           console.log(data);
           for (var i in data.hits) {
