@@ -1,8 +1,9 @@
 var app = app || {};
 
-var FoodItems = Backbone.Firebase.Collection.extend({
+var FoodItems = Backbone.Collection.extend({
   model: app.FoodItem,
-  url: "https://glowing-inferno-6853.firebaseIO.com/tempList",
+  localStorage: new Backbone.LocalStorage("food-items-local"),
+  // url: "https://glowing-inferno-6853.firebaseIO.com/tempList",
 })
 
 app.FoodItems = new FoodItems();

@@ -1,5 +1,10 @@
 * {
   font-family: jura;
+  /*font-size: 20px;*/
+}
+
+.red {
+  color: red;
 }
 
 ::-webkit-scrollbar {
@@ -28,6 +33,7 @@ header {
 }
 
 #select-food-item {
+  height: 200px;
   margin-top: 10px;
   position: relative;
   /*z-index: -1;*/
@@ -85,6 +91,7 @@ select {
 .main-ate-that, #clear-log {
   position: relative;
   background: #FF4081;
+  font-size: 20px;
   color: white;
   /*z-index: -1;*/
   margin-top: 10px;
@@ -179,6 +186,21 @@ option {
 }
 
 
+
+.new-options {
+  background: white;
+}
+
+.new-option {
+  border: 2px red solid;
+  margin-top: 10px;
+  list-style-type: none;
+}
+
+.new-selected {
+  background: #FF4081;
+  color: white;
+}
 
 
 

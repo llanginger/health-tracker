@@ -41,7 +41,7 @@ app.AppView = Backbone.View.extend({
     "click": "hideOptions",
     "click .main-ate-that": "addFoodToLog",
     "click #clear-log": "clearFoodLog",
-    "click option": "thisCalories",
+    "click .select-food-option": "thisCalories",
     "click .leo-auto-suggest": "onEnter"
     // "keypress #autocomplete": "updateOnEnter"
   },
@@ -57,20 +57,22 @@ app.AppView = Backbone.View.extend({
   },
 
   thisCalories: function() {
-    var id = $("#select-food-item option:selected").attr("id");
-    $("#item-cals").html("That has: " + "<span class='accent-color'>" + Math.round(app.FoodItems.get(id).get("calories")) + "</span> calories!");
+
+    var cals = app.FoodItems.where({selected: true})[0].get("calories")
+
+    console.log(cals);
+
+    $("#item-cals").html("That has: " + "<span class='accent-color'>" + Math.round(cals) + "</span> calories!");
+
+
   },
 
   addFoodToLog: function() {
 
-    var id = $("#select-food-item option:selected").attr("id");
+    var selected = app.FoodItems.where({selected: true})
+    app.FoodLog.create(selected[0])
 
-    app.FoodLog.create({
-      title: app.FoodItems.get(id).get("title"),
-      brand: app.FoodItems.get(id).get("brand"),
-      calories: app.FoodItems.get(id).get("calories"),
-      date: app.FoodItems.get(id).get("date")
-    });
+    console.log()
   },
 
   render: function() {
@@ -148,8 +150,11 @@ app.AppView = Backbone.View.extend({
   },
 
   createList: function( foodItem ) {
-    var view = new app.FoodItemView({ model: foodItem });
-    $("#item-view").append( view.render().el );
+    var view = new app.FoodItemView({
+      model: foodItem,
+
+    });
+    $("#select-food-item").append( view.render().el );
   },
 
   renderLog: function( foodLogItem ) {
