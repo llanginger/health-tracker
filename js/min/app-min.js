@@ -1,1 +1,1 @@
-var app=app||{},ENTER_KEY=13;$(function(){new app.AppView});
+var app=app||{},ENTER_KEY=13;$(function(){new app.AppView,$(".new-option").mouseenter(function(){$(this).addClass("new-selected")}).mouseleave(function(){$(this).removeClass("new-selected")}).click(function(){console.log($(this).attr("id"))})});

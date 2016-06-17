@@ -4,12 +4,12 @@ app.FoodItem = Backbone.Model.extend({
   defaults: {
     title: "",
     calories: 0,
-    completed: false,
+    selected: false,
   },
 
-  toggle: function(){
+  selected: function(){
     this.save({
-      completed: !this.get("completed")
+      selected: !this.get("selected")
     })
   }
 })

@@ -3,6 +3,10 @@
   /*font-size: 20px;*/
 }
 
+.red {
+  color: red;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -29,6 +33,7 @@ header {
 }
 
 #select-food-item {
+  height: 200px;
   margin-top: 10px;
   position: relative;
   /*z-index: -1;*/
@@ -181,6 +186,21 @@ option {
 }
 
 
+
+.new-options {
+  background: white;
+}
+
+.new-option {
+  border: 2px red solid;
+  margin-top: 10px;
+  list-style-type: none;
+}
+
+.new-selected {
+  background: #FF4081;
+  color: white;
+}
 
 
 
