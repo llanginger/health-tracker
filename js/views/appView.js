@@ -70,7 +70,12 @@ app.AppView = Backbone.View.extend({
   addFoodToLog: function() {
 
     var selected = app.FoodItems.where({selected: true})
-    app.FoodLog.create(selected[0])
+    app.FoodLog.create({
+      title: selected[0].get("title"),
+      calories: selected[0].get("calories"),
+      date: selected[0].get("date"),
+      brand: selected[0].get("brand")
+    })
 
     console.log()
   },
