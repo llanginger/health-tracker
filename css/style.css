@@ -1,10 +1,10 @@
 * {
   font-family: jura;
-  /*font-size: 20px;*/
+  font-size: 18px;
 }
 
-.red {
-  color: red;
+.delete-log-item {
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -14,6 +14,37 @@
 header {
   height: 20px;
   background: #455A64;
+}
+
+#overlay {
+  opacity:    0.5;
+  background: #000;
+  width:      100%;
+  height:     100%;
+  z-index:    9;
+  top:        0;
+  left:       0;
+  position:   fixed;
+}
+
+#overlay-info {
+  position: fixed;
+  top: 100px;
+  width: 50%;
+  left: 0;
+  right: 0;
+  margin: 5% auto;
+  background: white;
+  opacity: 1;
+  z-index: 10;
+  text-align: center;
+  border-radius: 5px;
+}
+
+#close-tutorial {
+  margin-bottom: 15px;
+  color: white;
+  background-color: #FF4081;
 }
 
 #health-app {
@@ -36,6 +67,7 @@ header {
   height: 200px;
   margin-top: 10px;
   position: relative;
+  overflow: scroll;
   /*z-index: -1;*/
 }
 

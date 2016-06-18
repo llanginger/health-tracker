@@ -9,7 +9,7 @@ app.LogView = Backbone.View.extend({
   template: _.template( $("#log-template").html() ),
 
   events: {
-
+    "click .delete-log-item": "deleteThis"
   },
 
   initialize: function() {
@@ -27,12 +27,6 @@ app.LogView = Backbone.View.extend({
 
     this.$el.html( this.template( this.model.attributes ) );
 
-    // this.$el.append("<div class='logged-item'>" +
-    // this.model.get("title") + ", by: " + this.model.get("brand") + ".  " +
-    // this.model.get("calories") + " calories on " +
-    // this.model.get("date") +
-    // "</div>");
-
     this.calculateCalories();
 
     return this;
@@ -45,6 +39,10 @@ app.LogView = Backbone.View.extend({
       totalCalories += this;
     })
     $("#total-cals").html("Total calories consumed: <span class='accent-color'>" + Math.round(totalCalories) + "</span>!");
+  },
 
+  deleteThis: function() {
+    this.model.destroy();
+    this.$el.remove();
   }
 })

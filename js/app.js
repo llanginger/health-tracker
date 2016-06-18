@@ -5,16 +5,24 @@ $(function() {
   new app.AppView();
 
   // Turn ul into options
-  $(".new-option").mouseenter(function() {
-    $(this).addClass("new-selected")
-  }).mouseleave(function() {
-    $(this).removeClass('new-selected')
-  }).click(function() {
-    console.log($(this).attr("id"))
-  })
+  // $(".new-option").mouseenter(function() {
+  //   $(this).addClass("new-selected")
+  // }).mouseleave(function() {
+  //   $(this).removeClass('new-selected')
+  // }).click(function() {
+  //   console.log($(this).attr("id"))
+  // })
+
+
 
 
 });
+
+var Store = window.Locally.Store;
+
+var store = new Store();
+//
+store.set("key", "thing1")
 
 // Move app.FoodItems to localstorage so that this function will not nuke other users's models
 

@@ -15,12 +15,35 @@
   <header></header>
   <body id="health-app">
 
+    <div id="overlay-info">
+      <h3>
+        This is a tutorial
+      </h3>
+      <p>
+        There will be text here
+      </p>
+      <p>
+        And here!
+      </p>
+      <p>
+        I'm currently working on:
+      </p>
+
+      <p><em>Implementing Local Storage</em></p>
+      <p><em>Data Viz</em></p>
+      <p><em>Maybe Unique signins?</em></p>
+      <button id="close-tutorial" class="btn">Ok, I've got it!</button>
+
+
+    </div>
+    <div id="overlay"></div>
+
 
   <div id= "app" class="container">
 
     <div class="row">
       <div id="logo" class="col-xs-12 text-center">
-        <h1>YOU ATE WHAT NOW??</h1>
+        <h1>WHAT DID WE EAT NOW??</h1>
       </div>
     </div>
 
@@ -53,7 +76,6 @@
         <script type="text/template" id="food-select-template">
           <%= title %>
           <%= brand %>
-          <span class="destroy">X</span>
 
         </script>
 
@@ -61,7 +83,7 @@
     </div>
 
 
-    <!-- Persistent Food Log Here -->
+
 
     <div class="row">
       <div class="col-md-4">
@@ -77,10 +99,9 @@
 
     <hr />
 
-    <!-- Options here -->
 
 
-    <!-- Food Log here -->
+    <!-- Persistent Food Log Here -->
     <div class="row">
       <div class="col-md-12 text-center">
         <div id="total-cals">Total calories tracked: 0</div>
@@ -90,7 +111,7 @@
 
       <script type="text/template" id="log-template">
 
-        <%= title %>, by: <%= brand %>. <%= calories %> calories on <%= date %>
+        <%= title %>, by: <%= brand %>. <%= calories %> calories on <%= date %> <i class="fa fa-close delete-log-item accent-color"></i>
 
       </script>
 
@@ -107,6 +128,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://use.fontawesome.com/5ebdcf9dc7.js"></script>
   <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="js/lib/locally.min.js"></script>
   <script src="js/lib/underscore.js"></script>
   <script src="js/lib/backbone-min.js"></script>
   <script src="js/lib/backbone.localStorage-min.js"></script>
