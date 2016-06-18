@@ -34,8 +34,10 @@ header {
 
 #overlay-info {
   position: fixed;
-  top: 100px;
-  width: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+  top: 10%;
+  width: 75%;
   left: 0;
   right: 0;
   margin: 5% auto;
