@@ -32,6 +32,10 @@ header {
   position:   fixed;
 }
 
+p {
+  font-size: 14px;
+}
+
 #overlay-info {
   position: fixed;
   padding-left: 10px;
