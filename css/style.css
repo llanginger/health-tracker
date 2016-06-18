@@ -36,7 +36,7 @@ header {
   position: fixed;
   padding-left: 10px;
   padding-right: 10px;
-  top: 10%;
+  top: 5%;
   width: 75%;
   left: 0;
   right: 0;
@@ -46,6 +46,10 @@ header {
   z-index: 10;
   text-align: center;
   border-radius: 5px;
+}
+
+#show-tutorial {
+  cursor: pointer;
 }
 
 #close-tutorial {
@@ -252,6 +256,19 @@ option {
 .new-selected {
   background: #FF4081;
   color: white;
+}
+
+#by-me {
+  font-size: 12px;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#by-me:hover {
+  color: #FF4081;
+  background-color: white;
 }
 
 
