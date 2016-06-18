@@ -1,31 +1,21 @@
 var app = app || {};
 var ENTER_KEY = 13;
 
+
+// Check to see if user has visited site before - if not, display tutorial
+var Store = window.Locally.Store,
+    store = new Store();
+
+if (!store.get("wasHere")) {
+  $("#overlay").removeClass("hidden");
+  $("#overlay-info").removeClass("hidden");
+  store.set("wasHere", true)
+}
+
+// Instantiate APP!
+
 $(function() {
   new app.AppView();
 
-  // Turn ul into options
-  // $(".new-option").mouseenter(function() {
-  //   $(this).addClass("new-selected")
-  // }).mouseleave(function() {
-  //   $(this).removeClass('new-selected')
-  // }).click(function() {
-  //   console.log($(this).attr("id"))
-  // })
-
-
-
 
 });
-
-var Store = window.Locally.Store;
-
-var store = new Store();
-//
-store.set("key", "thing1")
-
-// Move app.FoodItems to localstorage so that this function will not nuke other users's models
-
-// window.onbeforeunload = function(e) {
-//   app.FoodItems.reset();
-// };

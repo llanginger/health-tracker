@@ -1,1 +1,1 @@
-var app=app||{},ENTER_KEY=13;$(function(){new app.AppView});var Store=window.Locally.Store,store=new Store;store.set("key","thing1");
+var app=app||{},ENTER_KEY=13,Store=window.Locally.Store,store=new Store;store.get("wasHere")||($("#overlay").removeClass("hidden"),$("#overlay-info").removeClass("hidden"),store.set("wasHere",!0)),$(function(){new app.AppView});

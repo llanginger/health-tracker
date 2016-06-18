@@ -7,7 +7,12 @@
   cursor: pointer;
 }
 
-::-webkit-scrollbar {
+.hidden {
+  display: none;
+}
+
+
+body::-webkit-scrollbar {
     display: none;
 }
 
@@ -64,12 +69,16 @@ header {
 }
 
 #select-food-item {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-left: 17px;
   height: 200px;
   margin-top: 10px;
   position: relative;
-  overflow: scroll;
   /*z-index: -1;*/
 }
+
+
 
 #leo-auto-bar {
   background: white;
@@ -121,6 +130,10 @@ select {
 
 
 .main-ate-that, #clear-log {
+  cursor: pointer;
+  line-height: 48px;
+  text-align: center;
+  /*border-radius: 5px;*/
   position: relative;
   background: #FF4081;
   font-size: 20px;
@@ -129,6 +142,10 @@ select {
   margin-top: 10px;
   height: 50px;
   width: 100%;
+}
+
+.main-ate-that:hover, #clear-log:hover {
+  font-size: 21px;
 }
 
 #clear-log {
@@ -167,6 +184,7 @@ option {
 }
 
 #food-log {
+  padding-left: 17px;
   position: relative;
   border-bottom: 5px solid #CFD8DC;
   border-top: 5px solid #CFD8DC;

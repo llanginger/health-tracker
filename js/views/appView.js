@@ -42,11 +42,17 @@ app.AppView = Backbone.View.extend({
     "click .main-ate-that": "addFoodToLog",
     "click #clear-log": "clearFoodLog",
     "click .select-food-option": "thisCalories",
-    "click .leo-auto-suggest": "onEnter"
+    "click .leo-auto-suggest": "onEnter",
+    "click #close-tutorial": "closeTutorial",
+    "click #show-tutorial": "showTutorial"
     // "keypress #autocomplete": "updateOnEnter"
   },
 
   initialize: function() {
+
+    this.$overlay = $("#overlay");
+    this.$overlayInfo = $("#overlay-info");
+    this.$overlayGroup = $("#overlay-group");
 
     this.listenTo( this.model, "change", this.render );
     this.listenTo( app.FoodItems, "add", this.createList );
@@ -85,6 +91,21 @@ app.AppView = Backbone.View.extend({
     this.$input = this.$(".edit");
     console.log(JSON.stringify(this.model))
     return this;
+  },
+
+  closeTutorial: function() {
+
+    this.$overlay.fadeOut('fast');
+    this.$overlayInfo.fadeOut('fast');
+  },
+
+  showTutorial: function() {
+
+    console.log("show tut")
+
+    this.$overlay.fadeIn("fast").removeClass("hidden");
+    this.$overlayInfo.fadeIn("fast").removeClass("hidden");
+
   },
 
   edit: function() {

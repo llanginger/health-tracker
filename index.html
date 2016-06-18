@@ -15,109 +15,95 @@
   <header></header>
   <body id="health-app">
 
-    <div id="overlay-info">
-      <h3>
-        This is a tutorial
-      </h3>
-      <p>
-        There will be text here
-      </p>
-      <p>
-        And here!
-      </p>
-      <p>
-        I'm currently working on:
-      </p>
 
-      <p><em>Implementing Local Storage</em></p>
-      <p><em>Data Viz</em></p>
-      <p><em>Maybe Unique signins?</em></p>
-      <button id="close-tutorial" class="btn">Ok, I've got it!</button>
-
-
-    </div>
-    <div id="overlay"></div>
 
 
   <div id= "app" class="container">
 
+      <!-- Tutorial Overlay -->
+      <div id="overlay-info" class="hidden">
+        <h3>
+          This is a tutorial
+        </h3>
+        <p>
+          There will be text here
+        </p>
+        <p>
+          And here!
+        </p>
+        <p>
+          I'm currently working on:
+        </p>
+
+        <p><em>Implementing Local Storage</em></p>
+        <p><em>Data Viz</em></p>
+        <p><em>Maybe Unique signins?</em></p>
+        <button id="close-tutorial" class="btn">Ok, I've got it!</button>
+      </div>
+      <div id="overlay" class="hidden"></div>
+
+
+    <!-- Header Text -->
+
     <div class="row">
-      <div id="logo" class="col-xs-12 text-center">
-        <h1>WHAT DID WE EAT NOW??</h1>
+      <div id="logo" class="col-xs-11 text-center">
+        <h1>WHAT DID WE EAT NOW?? <i id="show-tutorial" class="fa fa-info-circle small-icon"></i></h1>
       </div>
     </div>
 
-    <!-- <div class="row">
-      <div class="col-md-12 new-options">
-        <ul>
-          <li class="new-option">1</li>
-          <li id="this-one" class="new-option">2</li>
-          <li class="new-option">3</li>
-          <li class="new-option">4</li>
-        </ul>
-      </div>
-    </div> -->
-
+    <!-- Autocomplete Section -->
 
     <div class="row">
       <div id="search-div" class="col-md-12">
-
           <input id="leo-auto-bar" class="edit" value="What did you just eat?" type="text" autocomplete="off"/>
           <div class="leo-auto-suggestions hidden"></div>
       </div>
     </div>
 
-    <!-- Specific food options here -->
+    <!-- Food options here -->
+
     <div class="row">
       <div id="item-div" class="col-md-12 text-center">
         <div id="select-food-item" class="form-control" size="7">
         </div>
 
+        <!-- Simple Food Options Template -->
+
         <script type="text/template" id="food-select-template">
           <%= title %>
           <%= brand %>
-
         </script>
 
       </div>
     </div>
 
-
-
+    <!-- Info and Button row -->
 
     <div class="row">
       <div class="col-md-4">
         <div id="item-cals">How many calories does it have?</div>
       </div>
       <div class="col-md-8">
-        <button class="btn main-ate-that">I Totally Ate That!</button>
+        <div class="main-ate-that">I Totally Ate That!</div>
       </div>
-
-
     </div>
-
 
     <hr />
 
+    <!-- Persistent Food Log -->
 
-
-    <!-- Persistent Food Log Here -->
     <div class="row">
       <div class="col-md-12 text-center">
         <div id="total-cals">Total calories tracked: 0</div>
         <div id="food-log"></div>
-        <button id="clear-log" class="btn">Clear Food Log</button>
+        <div id="clear-log" class="">Clear Food Log</div>
       </div>
 
+      <!-- Simple Food Log Template -->
       <script type="text/template" id="log-template">
-
         <%= title %>, by: <%= brand %>. <%= calories %> calories on <%= date %> <i class="fa fa-close delete-log-item accent-color"></i>
-
       </script>
-
     </div>
-
-
   </div>
 
 
