@@ -2,7 +2,11 @@ var app = app || {};
 
 app.LogView = Backbone.View.extend({
 
-  el: "#food-log",
+  tagName: "div",
+
+  className: "logged-item",
+
+  template: _.template( $("#log-template").html() ),
 
   events: {
 
@@ -21,11 +25,13 @@ app.LogView = Backbone.View.extend({
 
     console.log("logview something happened")
 
-    this.$el.append("<div class='logged-item'>" +
-    this.model.get("title") + ", by: " + this.model.get("brand") + ".  " +
-    this.model.get("calories") + " calories on " +
-    this.model.get("date") +
-    "</div>");
+    this.$el.html( this.template( this.model.attributes ) );
+
+    // this.$el.append("<div class='logged-item'>" +
+    // this.model.get("title") + ", by: " + this.model.get("brand") + ".  " +
+    // this.model.get("calories") + " calories on " +
+    // this.model.get("date") +
+    // "</div>");
 
     this.calculateCalories();
 
