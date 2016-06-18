@@ -17,13 +17,15 @@ if (!store.get("wasHere")) {
 $(function() {
   new app.AppView();
 
-  window.addEventListener("load",function() {
-	// Set a timeout...
-	setTimeout(function(){
-		// Hide the address bar!
-		window.scrollTo(0, 1);
-	}, 0);
+
+
+
 });
 
-
+window.addEventListener("load",function() {
+// Set a timeout...
+setTimeout(function(){
+  // Hide the address bar!
+  window.scrollTo(0, 1);
+}, 0);
 });
