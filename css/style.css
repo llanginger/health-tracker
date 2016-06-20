@@ -204,7 +204,7 @@ option {
   overflow-y: auto;
   width: 100%;
   /*min-height: 50px;*/
-  max-height: 150px;
+  max-height: 200px;
   background-color: #CFD8DC;
   margin-bottom: 20px;
 }
@@ -276,7 +276,13 @@ option {
 }
 
 
+@media (min-height: 1000px) {
+  #food-log {
+    max-height: 600px;
+  }
+}
 
+/*@media (max-height: )*/
 
 /*.autocomplete-suggestions {
   border: 1px solid #999;
