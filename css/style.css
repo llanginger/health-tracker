@@ -32,12 +32,16 @@ header {
   position:   fixed;
 }
 
+p {
+  font-size: 14px;
+}
+
 #overlay-info {
   position: fixed;
   padding-left: 10px;
   padding-right: 10px;
   top: 5%;
-  width: 75%;
+  width: 90%;
   left: 0;
   right: 0;
   margin: 5% auto;
@@ -200,7 +204,7 @@ option {
   overflow-y: auto;
   width: 100%;
   /*min-height: 50px;*/
-  max-height: 150px;
+  max-height: 200px;
   background-color: #CFD8DC;
   margin-bottom: 20px;
 }
@@ -272,7 +276,13 @@ option {
 }
 
 
+@media (min-height: 1000px) {
+  #food-log {
+    max-height: 600px;
+  }
+}
 
+/*@media (max-height: )*/
 
 /*.autocomplete-suggestions {
   border: 1px solid #999;

@@ -187,7 +187,7 @@ app.AppView = Backbone.View.extend({
 
     console.log("log render fired");
     var logView = new app.LogView({ model: foodLogItem });
-    $("#food-log").append( logView.render().el );
+    $("#food-log").prepend( logView.render().el );
 
   },
 
