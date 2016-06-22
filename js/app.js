@@ -13,11 +13,6 @@ if (!store.get("wasHere")) {
 }
 
 // Instantiate APP!
-
 $(function() {
   new app.AppView();
-
-
-
-
 });

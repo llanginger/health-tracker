@@ -79,6 +79,7 @@ p {
 }
 
 #select-food-item {
+  cursor: pointer;
   overflow-x: hidden;
   overflow-y: scroll;
   padding-left: 17px;
