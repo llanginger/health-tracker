@@ -26,7 +26,7 @@ var nSets = {
 }
 
 
-
+// // Helper function to quickly be sure of what part of the document is being clicked
 // $(function(){
 //   $("body").click(function( event ) {
 //     console.log(event.target);
@@ -131,7 +131,7 @@ app.AppView = Backbone.View.extend({
 
   // --==Currently disabled in UI==-- function to clear out food log
   clearFoodLog: function(){
-    console.log("food Log Cleared");
+    // console.log("food Log Cleared");
     app.FoodLog.reset();
 
     $("#food-log").html("");
@@ -220,7 +220,7 @@ app.AppView = Backbone.View.extend({
           alert("Oops, we couldn't find anything like that!")
         })
         .done(function( data ) {
-          console.log(data)
+          // console.log(data)
           $("#select-food-item").html("");
 
           // Clear out collection to make room for new models
@@ -264,7 +264,7 @@ app.AppView = Backbone.View.extend({
             alert("Nutri api call failed");
           })
           .done(function( data ) {
-            console.log(data);
+            // console.log(data);
             self.$autoSuggestions.html("");
             for (var key in data) {
               if (data.hasOwnProperty(key)) {

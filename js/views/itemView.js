@@ -62,7 +62,6 @@ app.FoodItemView = Backbone.View.extend({
 
   // --==Currently disabled in UI==-- Destroy functionality for FoodItem views
   clear: function() {
-    console.log("clear fired");
     this.model.destroy();
     this.$el.remove();
   },
