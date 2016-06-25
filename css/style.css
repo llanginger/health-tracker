@@ -7,6 +7,15 @@
   cursor: pointer;
 }
 
+.delete-log-item:after {
+  /*background: pink;*/
+  content: "";
+  position:absolute;
+  margin: -20px;
+  padding: 20px;
+  position: relative;
+}
+
 .hidden {
   display: none;
 }
@@ -75,7 +84,6 @@ p {
 #logo {
   color: #FFFFFF;
   font-weight: 600;
-  /*-webkit-filter: drop-shadow(2px 2px 1px #CFD8DC);*/
 }
 
 #select-food-item {
@@ -199,12 +207,9 @@ option {
   position: relative;
   border-bottom: 5px solid #CFD8DC;
   border-top: 5px solid #CFD8DC;
-  /*padding-bottom: 10px;
-  padding-top: 10px;*/
   margin-top: 10px;
   overflow-y: auto;
   width: 100%;
-  /*min-height: 50px;*/
   max-height: 200px;
   background-color: #CFD8DC;
   margin-bottom: 20px;
@@ -230,10 +235,11 @@ option {
   font-size: 18px;
   background-color: #607D8B;
   color: white;
-  margin: 10px;
+  margin: 10px 10px 10px -5px;
   padding: 5px;
-  /*border: 2px white solid;*/
 }
+
+
 
 .logged-item:hover {
   background-color: #FFFFFF;
